@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import Game from "./components/Game";
 import Setting from "./components/Setting";
 
 function App() {
@@ -9,19 +10,20 @@ function App() {
     col: 3,
     p: 5,
   });
-  const toggleDisplayGameBoard = () => {
-    setDisplayGameBoard(!displayGameBoard);
+  const handleCustomGameButtonChange = () => {
+    setDisplayGameBoard(true);
   };
-  const handleSettingChange = (name, value) => {
-    setSettings((prevSettings) => ({
-      ...prevSettings,
-      [name]: value,
-    }));
-  };
+
+  const gameStart = () => {};
   return (
     <div className="App">
-      <Setting {...settings} setSettings={handleSettingChange} />
-      <button onClick={() => console.log(settings)}>게임 시작</button>
+      <Setting
+        {...settings}
+        setSettings={setSettings}
+        handleCustomGameButtonChange={handleCustomGameButtonChange}
+      />
+
+      {displayGameBoard && <Game {...settings} />}
     </div>
   );
 }

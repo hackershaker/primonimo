@@ -1,8 +1,20 @@
+import { useState } from "react";
+
 function Setting(props) {
+  const [tempSetting, setTempSetting] = useState({
+    row: 3,
+    col: 3,
+    p: 5,
+  });
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    props.setSettings(name, parseInt(value));
+    setTempSetting((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
+
   return (
     <div>
       <p>게임판 크기 설정</p>
@@ -10,23 +22,32 @@ function Setting(props) {
       <input
         type="text"
         name="row"
-        value={props.row}
+        value={tempSetting.row}
         onChange={handleInputChange}
       />
       열:
       <input
         type="text"
         name="col"
-        value={props.col}
+        value={tempSetting.col}
         onChange={handleInputChange}
       />
       <p>목표 숫자 설정</p>
       <input
         type="text"
         name="p"
-        value={props.p}
+        value={tempSetting.p}
         onChange={handleInputChange}
       />
+      <button
+        className="customGame"
+        onClick={() => {
+          props.setSettings(tempSetting);
+          props.handleCustomGameButtonChange();
+        }}
+      >
+        게임 시작
+      </button>
     </div>
   );
 }
