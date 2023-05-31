@@ -5,16 +5,17 @@ import Setting from "./components/Setting";
 
 function App() {
   const [displayGameBoard, setDisplayGameBoard] = useState(false);
+  const [gameKey, setGameKey] = useState(0);
   const [settings, setSettings] = useState({
     row: 3,
     col: 3,
     p: 5,
   });
   const handleCustomGameButtonChange = () => {
+    setGameKey((prevKey) => prevKey + 1);
     setDisplayGameBoard(true);
   };
 
-  const gameStart = () => {};
   return (
     <div className="App">
       <Setting
@@ -23,7 +24,7 @@ function App() {
         handleCustomGameButtonChange={handleCustomGameButtonChange}
       />
 
-      {displayGameBoard && <Game {...settings} />}
+      {displayGameBoard && <Game key={gameKey} {...settings} />}
     </div>
   );
 }

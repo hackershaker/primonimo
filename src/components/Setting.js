@@ -1,11 +1,14 @@
 import { useState } from "react";
 
 function Setting(props) {
+  
   const [tempSetting, setTempSetting] = useState({
-    row: 3,
-    col: 3,
+    row: 4,
+    col: 4,
     p: 5,
   });
+
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
