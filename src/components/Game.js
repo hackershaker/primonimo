@@ -14,16 +14,41 @@ function Game(props) {
     return initBoard;
   });
 
+  const shuffle = (arr) => {
+    for (let num = 0; num < 10; num++) {
+      const temprow = Math.floor(Math.random() * (props.row - 1));
+      const tempcol = Math.floor(Math.random() * (props.col - 1));
+
+      for (let i = 0; i < props.row; i++) {
+        arr[i][tempcol] =
+          ((arr[i][tempcol] + 1) % (props.p + 1)) +
+          parseInt((arr[i][tempcol] + 1) / (props.p + 1));
+      }
+      for (let j = 0; j < props.col; j++) {
+        arr[temprow][j] =
+          ((arr[temprow][j] + 1) % (props.p + 1)) +
+          parseInt((arr[temprow][j] + 1) / (props.p + 1));
+      }
+      arr[temprow][tempcol] = (arr[temprow][tempcol] + props.p) % (props.p + 1);
+    }
+    return arr;
+  };
+
   const handleCellClick = (rowIdx, colIdx) => {
     const newBoard = [...board];
     for (let i = 0; i < props.row; i++) {
-      newBoard[i][colIdx] = (newBoard[i][colIdx] + 1) % (props.p + 1);
+      newBoard[i][colIdx] =
+        ((newBoard[i][colIdx] + 1) % (props.p + 1)) +
+        parseInt((newBoard[i][colIdx] + 1) / (props.p + 1));
     }
     for (let j = 0; j < props.col; j++) {
-      newBoard[rowIdx][j] = (newBoard[rowIdx][j] + 1) % (props.p + 1);
+      if (j === colIdx) {
+        continue;
+      }
+      newBoard[rowIdx][j] =
+        ((newBoard[rowIdx][j] + 1) % (props.p + 1)) +
+        parseInt((newBoard[rowIdx][j] + 1) / (props.p + 1));
     }
-    newBoard[rowIdx][colIdx] =
-      (newBoard[rowIdx][colIdx] + props.p) % (props.p + 1);
     setBoard(newBoard);
   };
 
