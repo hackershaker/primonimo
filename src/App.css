@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+
 }
 
 .App-logo {
@@ -26,6 +27,37 @@
 
 .App-link {
   color: #61dafb;
+}
+
+/* game board setting */
+.GameBoard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+
+.GameBoard-row {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+
+}
+
+.GameBoard-cell {
+  border-style: solid;
+  border-color: black;
+  border-width: 5px;
+  font-size: 2rem;
+  padding-inline: 0.9rem;
+}
+.GameBoard-cell.green {
+  border-style: solid;
+  border-color: black;
+  border-width: 5px;
+  font-size: 2rem;
+  padding-inline: 0.9rem;
+  color: #65e25a;
 }
 
 @keyframes App-logo-spin {

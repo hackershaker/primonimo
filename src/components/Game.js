@@ -28,7 +28,6 @@ function Game(props) {
   };
 
   const makeBoard = () => {
-    console.log(board);
     return (
       <div className="GameBoard">
         {board.map((row, rowIndex) => (
@@ -38,6 +37,7 @@ function Game(props) {
                 v={cell}
                 r={rowIndex}
                 c={colIndex}
+                p={props.p}
                 key={colIndex}
                 handleCellClick={handleCellClick}
               />
